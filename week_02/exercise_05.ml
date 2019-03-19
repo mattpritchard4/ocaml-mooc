@@ -42,15 +42,11 @@ let rec mymap (f: 'a -> 'b) (l: 'a list) : 'b list =
 ;;
 
 let is_sorted (a: string array) : bool =
-  let answer =
-    Array.mapi (fun i x ->
-    if i = 0
-    then
-      true
-    else if String.compare x a.(i - 1) > 0
-    then
-      true
-    else
-      false) a in
-  Array.for_all (fun y -> y) answer
+  Array.for_all (fun y -> y)
+    (Array.mapi (fun i x ->
+         if i = 0
+         then
+           true
+         else
+           a.(i) > a.(i - 1)) a)
 ;;
