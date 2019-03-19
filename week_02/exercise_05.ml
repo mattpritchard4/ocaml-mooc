@@ -43,10 +43,5 @@ let rec mymap (f: 'a -> 'b) (l: 'a list) : 'b list =
 
 let is_sorted (a: string array) : bool =
   Array.for_all (fun y -> y)
-    (Array.mapi (fun i x ->
-         if i = 0
-         then
-           true
-         else
-           a.(i) > a.(i - 1)) a)
+    (Array.mapi (fun i x -> i = 0 || a.(i) > a.(i - 1)) a)
 ;;
