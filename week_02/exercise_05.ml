@@ -45,3 +45,21 @@ let is_sorted (a: string array) : bool =
   Array.for_all (fun y -> y)
     (Array.mapi (fun i x -> i = 0 || a.(i) > a.(i - 1)) a)
 ;;
+
+
+let find (arr: 'a array) (element: 'a) : int =
+  let l = 0 in
+  let r = Array.length(arr) - 1 in
+  let rec bin (left: int) (right: int) : int =
+    if left > right then -1
+    else
+      let middle = (left + right) / 2 in
+      let mid_val = arr.(middle) in
+      if mid_val = element then middle
+      else if element > mid_val
+      then
+        bin (middle + 1) right
+      else
+        bin left (middle - 1)
+  in bin l r
+;;
